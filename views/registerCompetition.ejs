@@ -1,0 +1,38 @@
+<% include ./partials/headerAdmin %>
+<section>
+    <h1>Add Competition</h1>
+    <div class="tbl-header">
+        <form method="POST">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>Club Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+            </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td><%= club.club_name %></td>
+                    <td><%= club.address %></td>
+                </tr>
+            </tbody>
+        </table>
+        <select name="competition_name">
+            <% competition.map(x => { %>
+            <option><%= x.competition_name %></option>
+            <%})%>
+        </select>
+        <input type="submit" value="Join!" />
+        </form>
+    </div>
+    
+<!-- follow me template -->
+<div class="made-with-love">
+    Made with
+    <i>♥</i> by
+    <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+</div>

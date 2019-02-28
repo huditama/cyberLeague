@@ -7,7 +7,7 @@ let container = [];
 competitions.map(x => {
   container.push({
     competition_name: x.competition_name,
-    schedule: new Date().toLocaleDateString(),
+    schedule: null,
     createdAt: new Date(),
     updatedAt: new Date()
   })

@@ -59,17 +59,17 @@ module.exports = (sequelize, DataTypes) => {
     ClubId: DataTypes.INTEGER,
     password: {
       type: DataTypes.STRING,
-      validate: {
-        len: {
-          args: [8, 15],
-          msg: 'Password must be between 8-15 characters'
-        },
-        notEmpty(value) {
-          if (value == null || value == undefined || value == '') {
-            throw new Error('Password cannot be empty')
-          }
-        }
-      }
+      // validate: {
+      //   len: {
+      //     args: [8, 15],
+      //     msg: 'Password must be between 8-15 characters'
+      //   },
+      //   notEmpty(value) {
+      //     if (value == null || value == undefined || value == '') {
+      //       throw new Error('Password cannot be empty')
+      //     }
+      //   }
+      // }
     },
     role: DataTypes.ENUM('Athlete', 'Admin', 'Promotor'),
   }, {

@@ -1,0 +1,47 @@
+<% include ./partials/headerAdmin %>
+
+<form class="login" method="POST">
+    <h1 class="login-title">EDIT DATA </h1>
+    <input type="text" class="login-input" value="<%= player.first_name %>" name="first_name" minlength="3" autofocus
+        required>
+    <input type="text" class="login-input" value="<%= player.last_name %>" name="last_name" required>
+    <select name='gender'>
+        <% if (player.gender == 'Male') { %>
+        <option value="Male" selected>Male</option>
+        <option value="Female">Female</option>
+        <% } else { %>
+        <option value="Female" selected>Female</option>
+        <option value="Male">Male</option>
+        <%  } %>
+    </select><br /><br />
+    <input type="email" class="login-input" value="<%= player.email %>" name="email" autofocus required>
+    <input type="password" class="login-input" value="Password" name="password" autofocus required>
+    <% if (player.role == 'Athlete' || player.role == 'Admin') { %>
+    Club:<br />
+    <select name="ClubId">
+        <% clubs.map(x => { %>
+        <% if(player.ClubId == x.id) { %>
+        <option value="<%= x.id %>" selected><%= x.club_name%></option>
+        <% } else { %>
+        <option value="<%= x.id %>"><%= x.club_name %></option>
+        <% } %>
+        <%})%>
+    </select><br /><br />
+    <% } %>
+    <select name='role'>
+        <% if (player.role == 'Athlete') { %>
+        <option value="Athlete" selected>Athlete</option>
+        <option value="Admin">Admin</option>
+        <option value="Promotor">Promotor</option>
+        <% } else if (player.role == 'Admin') { %>
+        <option value="Admin" selected>Admin</option>
+        <option value="Athlete">Athlete</option>
+        <option value="Promotor">Promotor</option>
+        <% } else if (player.role == 'Promotor') { %>
+        <option value="Promotor" selected>Promotor</option>
+        <option value="Admin">Admin</option>
+        <option value="Athlete">Athlete</option>
+        <% } %>
+    </select><br /><br />
+    <input type="submit" value="Lets Go" class="login-button">
+</form>

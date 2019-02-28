@@ -1,0 +1,27 @@
+[
+    {
+        "first_name": "Reyhan",
+        "last_name": "Huditama",
+        "gender": "Male",
+        "email": "reyhan@email.com",
+        "password": "12345",
+        "role": "Athlete"
+        
+    },
+    {
+        "first_name": "Azhar",
+        "last_name": "Nazli",
+        "gender": "Male",
+        "email": "azhar@email.com",
+        "password": "12345",
+        "role": "Admin"
+    },
+    {
+        "first_name": "Paulina",
+        "last_name": "Davita",
+        "gender": "Female",
+        "email": "paulina@email.com",
+        "password": "12345",
+        "role": "Promotor"
+    }
+]

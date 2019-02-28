@@ -1,90 +1,54 @@
-const express = require("express");
-const router = express.Router()
-const Model = require("../models");
+import passport from 'passport'
+import express from 'express'
+// const app = expres()
+const LocalStrategy = require('passport-local').Strategy;
+const router = express.Router();
+import models from '../models'
+const {
+  Players,
+  Clubs,
+  Competitions,
+  ClubsCompetitions
+} = models
 
-//Show List of Players by Club Name
-router.get("/", function (req, res) {
-  Model.Players.findAll({
-    include: [Model.Clubs],
-    order: [['role', 'ASC']]
-  })
-    .then(data => {
-      res.render("players/players", {
-        listPlayers: data
-      })
-    })
+import bcrypt from 'bcryptjs'
 
-    .catch(err => {
-      res.send(err.message);
-    })
+router.get('/', (req, res)=> {
+  res.render('register')
 })
 
-//Register Players
-router.get("/register", function (req, res) {
-  res.render("players/register");
-}).post("/register", function (req, res) {
-  Model.Players.create(req.body)
-    .then(() => {
-      res.redirect("/players");
-    })
-    .catch(err => {
-      res.send(err.message);
-    })
-})
+router.post('/',(req, res, next) => {
+  const { first_name, last_name, gender, email, password, role, ClubId } = req.body
 
-//Edit Players
-router.get("/editPlayers/:id", function (req, res) {
-  let playerData = null
-  Model.Players.findByPk(req.params.id)
-    .then(data => {
-      playerData = data
-      return Model.Clubs.findAll()
-    })
-    .then(clubs => {
-      res.render("players/editPlayers", {
-        player: playerData, clubs
-      })
-    })
-    .catch(err => {
-      res.send(err.message)
-    })
-})
-  .post("/editPlayers/:id", function (req, res) {
-    Model.Players.update({
-      id: req.params.id,
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      gender: req.body.gender,
-      email: req.body.email,
-      ClubId: req.body.ClubId,
-      password: req.body.password,
-      position: req.body.position,
-    }, {
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(() => {
-        res.redirect("/players");
-      })
-      .catch(err => {
-        res.send(err.message);
-      })
-  })
-
-//Delete Players
-router.get("/deletePlayers/:id", function (req, res) {
-  Model.Players.destroy({
-    where: {
-      id: req.params.id
+  let obj = {
+    first_name,
+    last_name,
+    gender,
+    email,
+    password,
+    role,
+    ClubId
+  }
+  Players.findOne({where: { email : obj.email }})
+  .then(data => {
+    if(data){
+      res.send('dup')
+    } else {
+      bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(obj.password, salt, (err, hash) => {
+            if(err) throw err
+            obj.password = hash
+            Players.create(obj)
+            .then(data => {
+              res.redirect('/login')
+            })
+            .catch((err) => {
+              res.send(err)
+            })
+          })
+        })
     }
-  })
-    .then(() => {
-      res.redirect("/players");
-    })
-    .catch(err => {
-      res.send(err.message);
-    })
+  }).catch((err) => res.send(err.message))
 })
 
-module.exports = router;
+export default router

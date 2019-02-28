@@ -1,0 +1,39 @@
+<% include ./partials/headerPlayer %>
+<section>
+    <h1>Competition Data</h1>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Competition Name</th>
+                    <th>Schedule</th>
+                    <th>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <% listCompetitions.map(x => { %>
+                    <td><%= x.id%></td>
+                    <td><%= x.competition_name%></td>
+                    <td><%= x.schedule%></td>
+                    <td>
+                        <a href="/players/competitions/teams/<%= x.id %>">Teams</a>
+                    </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- follow me template -->
+<div class="made-with-love">
+    Made with
+    <i>♥</i> by
+    <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+</div>

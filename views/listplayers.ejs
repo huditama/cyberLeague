@@ -1,0 +1,55 @@
+<% include ./partials/headerAdmin %>
+<section>
+    <h1>Player Data</h1>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Plays For</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <% listPlayers.map(x => { %>
+                <tr>
+                    <td><%= x.first_name%></td>
+                    <td><%= x.last_name%></td>
+                    <td><%= x.gender %></td>
+                    <td><%= x.email%></td>
+                    <!-- <td><%= x.role%></td> -->
+                    <% if (x.ClubId == null) { %>
+                    <% if(x.role !== 'Athlete') { %>
+                    <td>N / A</td>
+                    <% } else { %>
+                    <td>FREE AGENT</td>
+                    <% } %>
+                    <%  } else { %>
+                    <td><%= x.Club.club_name %></td>
+                    <%} %>
+                    <td>
+                        <a href="/playersAdmin/edit/<%= x.id %>">EDIT</a> |
+                        <a href="/playersAdmin/delete/<%= x.id %>"
+                            onclick="return confirm('Are you sure you want to delete this player?');">DELETE</a>
+                    </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- follow me template -->
+<div class="made-with-love">
+    Made with
+    <i>♥</i> by
+    <a target="_blank" href="https://codepen.io/nikhil8krishnan">Nikhil Krishnan</a>
+</div>

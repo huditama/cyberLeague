@@ -7,8 +7,10 @@ const {
     Competitions,
     ClubsCompetitions
 } = models
+// const {ensureAuthenticated} = require('./key/outh')
+const  ensureAuthenticated  = require('../key/auth')
 
-router.get("/", function (req, res) {
+router.get("/", function ensureAuthenticated( req, res) {
     Clubs.findAll({
         include: [Players],
         order: [['id', 'ASC']]

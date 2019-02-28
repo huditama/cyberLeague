@@ -11,6 +11,9 @@ const {
   ClubsCompetitions
 } = models
 
+// const {ensureAuthenticated} = require('./key/outh')
+const  ensureAuthenticated  = require('../key/auth')
+
 import bcrypt from 'bcryptjs'
 
 
@@ -66,6 +69,7 @@ passport.deserializeUser((id, done) => {
 
 
 router.get('/', (req, res) => {
+  
   res.render('login')
 })
 
@@ -81,6 +85,7 @@ router.post('/', (req, res, next) => {
       return res.redirect('/register')
     } else {
       if (user.role == 'Admin') {
+       
         res.redirect('/playersAdmin')
       } else if (user.role == 'Athlete') {
         res.redirect('/players/clubs')

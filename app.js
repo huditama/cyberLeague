@@ -25,6 +25,7 @@ import competitions from './routes/competitions'
 import teams from './routes/teams'
 import promotorCompetitions from './routes/promotorCompetitions'
 import promotorCompetitors from './routes/promotorCompetitors'
+import logout from './routes/logout'
 
 
 // require('./key/passport')(passport);
@@ -98,9 +99,14 @@ app.use('/players/competitions/teams', teams)
 app.use('/promotor/competitions', promotorCompetitions)
 app.use('/promotor/competitions/competitors', promotorCompetitors)
 
+app.use('/logout', logout)
+
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () =>
   console.log(`you are connected at port http://localhost:${PORT}`)
 );
+
+
+// console.log(ensureAuthenticated)

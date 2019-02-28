@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>COMPETITORS</title>
+</head>
+
+<body>
+    <center>
+        <% include ../partials/nav.ejs %>
+        <h1><%= registeredTeam.club_name %></h1>
+        <table border="1">
+            <tr>
+                <th>Club Name</th>
+                <th>Address</th>
+            </tr>
+            <% registeredTeam.Clubs.map(x => { %>
+            <tr>
+                <td><%=x.club_name%></td>
+                <td><%=x.address%></td>
+            </tr>
+            <%})%>
+        </table>
+    </center>
+</body>
+
+</html>

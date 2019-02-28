@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>LIST OF CLUBS</title>
+</head>
+<center>
+
+  <body>
+    <% include ../partials/nav.ejs %>
+    <h1>Clubs Data</h1>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Club Name</th>
+        <th>Address</th>
+        <th>Register to a Competition</th>
+      </tr>
+      <tr>
+        <% listClubs.map(x => { %>
+        <td><%= x.id%></td>
+        <td><%= x.club_name%></td>
+        <td><%= x.address%></td>
+        <td><a href="/clubs/<%= x.id %>/registerCompetition">Find Competition!</a></td>
+      </tr>
+      <%})%>
+    </table>
+    <h2><a href="/clubs/register">Make Your Own Club!</a></h2>
+  </body>
+</center>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>REGISTER</title>
+</head>
+<center>
+
+    <body>
+        <% include ../partials/nav.ejs %>
+        <h1>Register As A Player</h1>
+        <form method="POST">
+            First Name:<br />
+            <input type="text" name="first_name" placeholder="First Name" /><br /><br />
+            Last Name:<br />
+            <input type="text" name="last_name" placeholder="Last Name" /><br /><br />
+            Gender:<br />
+            <select name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br /><br />
+            Email:<br />
+            <input type="text" name="email" placeholder="Email" /><br /><br />
+            Password: <br />
+            <input type="text" name="password" placeholder="Password" /><br /><br />
+            Role:<br />
+            <select name="role">
+                <option value="Athlete">Athlete</option>
+                <option value="Admin">Admin</option>
+                <option value="Promotor">Promotor</option>
+            </select><br /><br />
+            <input type="submit" value="Register!" />
+        </form>
+    </body>
+</center>
+
+</html>

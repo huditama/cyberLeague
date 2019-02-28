@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EDIT PLAYER</title>
+</head>
+
+<body>
+    <center>
+        <% include ../partials/nav.ejs %>
+        <h1>Edit Data</h1>
+        <form method="POST" action="/players/editPlayers/<%= player.id %>">
+            First Name:<br />
+            <input type="text" name="first_name" value=<%=player.first_name%>><br /><br />
+            Last Name:<br />
+            <input type="text" name="last_name" value=<%=player.last_name%>><br /><br />
+            Gender: <br />
+            <select name='gender'>
+                <% if (player.gender == 'Male') { %>
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <% } else { %>
+                <option value="Female" selected>Female</option>
+                <option value="Male">Male</option>
+                <%  } %>
+            </select><br /><br />
+            Email:<br />
+            <input type="text" name="email" value=<%=player.email%>><br /><br />
+            Password:<br />
+            <input type="text" name="password" value=<%=player.password%>><br /><br />
+            <% if (player.role == 'Athlete' || player.role == 'Admin') { %>
+            Club:<br />
+            <select name="ClubId">
+                <% clubs.map(x => { %>
+                <% if(player.ClubId == x.id) { %>
+                <option value="<%= x.id %>" selected><%= x.club_name%></option>
+                <% } else { %>
+                <option value="<%= x.id %>"><%= x.club_name %></option>
+                <% } %>
+                <%})%>
+            </select><br /><br />
+            <% } %>
+            Role:<br />
+            <select name='role'>
+                <% if (player.role == 'Athlete') { %>
+                <option value="Athlete" selected>Athlete</option>
+                <option value="Admin">Admin</option>
+                <option value="Promotor">Promotor</option>
+                <% } else if (player.role == 'Admin') { %>
+                <option value="Admin" selected>Admin</option>
+                <option value="Athlete">Athlete</option>
+                <option value="Promotor">Promotor</option>
+                <% } else if (player.role == 'Promotor') { %>
+                <option value="Promotor" selected>Promotor</option>
+                <option value="Admin">Admin</option>
+                <option value="Athlete">Athlete</option>
+                <% } %>
+            </select><br /><br />
+            <input type="submit" value="Edit Player" />
+        </form>
+    </center>
+</body>
+
+</html>

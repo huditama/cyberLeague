@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JOIN A COMPETITION</title>
+</head>
+<center>
+  <body>
+    <% include ../partials/nav.ejs %>
+    <h1>Add Competition</h1>
+    <form method="POST">
+      <table border="1">
+        <tr>
+          <th>Club Name</th>
+          <th>Address</th>
+        </tr>
+        <tr>
+          <td><%= club.club_name %></td>
+          <td><%= club.address %></td>
+        </tr>
+      </table>
+      <select name="competition_name">
+        <% competition.map(x => { %>
+        <option><%= x.competition_name %></option>
+        <%})%>
+      </select>
+      <input type="submit" value="Join!" />
+    </form>
+  </body>
+</center>
+</html>

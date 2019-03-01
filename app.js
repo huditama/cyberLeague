@@ -34,9 +34,7 @@ app.use("*/css",express.static("public/css"));
 app.use('*/js',express.static("public/js"));
 app.use("*/images",express.static("public/images"))
 
-app.use(passport.initialize());
 
-app.use(passport.session());
 // file script and css
 app.use(express.static('public'))
 
@@ -56,6 +54,10 @@ app.use(
     saveUninitialized: true
   })
 );
+
+app.use(passport.initialize());
+
+app.use(passport.session());
 
 //middleware
 

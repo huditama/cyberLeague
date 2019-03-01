@@ -12,6 +12,13 @@
     <form method="post">
     	<input type="text" name="email" placeholder="Email" required="required" />
         <input type="password" name="password" placeholder="Password" required="required" />
+       
         <button type="submit"  class="btn btn-primary btn-block btn-large" id="letmein">Let me in.</button>
-    </form>
+<br>
+<br>
+  <% if (url != null ) { %>
+    <h4>  copy this link, then open on on search engine, save if you forgot yoour passowrd and email</h4>
+    <input type="text" name="qrbarcode" placeholder="qrcode" value=<%= url %> required="required" />
+ <% } %>
+      </form>
 </div>

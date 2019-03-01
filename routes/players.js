@@ -12,6 +12,7 @@ const {
 } = models
 
 import bcrypt from 'bcryptjs'
+import QRcode from 'qrcode'
 
 router.get('/', (req, res)=> {
   res.render('register')
@@ -40,7 +41,10 @@ router.post('/',(req, res, next) => {
             obj.password = hash
             Players.create(obj)
             .then(data => {
-              res.redirect('/login')
+              QRcode.toDataURL(`email: ${email}, password: ${password}`)
+              .then(url => {
+                res.render('login', { url })
+              })
             })
             .catch((err) => {
               res.send(err)

@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-const  ensureAuthenticated  = require('../key/auth')
+const  {ensureAuthenticated}  = require('../key/auth')
 
 import models from '../models'
 const {
@@ -15,7 +15,7 @@ import moment from 'moment'
 // import ensureAuthenticated from './key/auth'
 
 
-router.get("/", function ensureAuthenticated(req, res) {
+router.get("/", function(req, res) {
     Competitions.findAll({
         include: [Clubs],
         order: [['id', 'ASC']]

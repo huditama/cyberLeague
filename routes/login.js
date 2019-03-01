@@ -12,13 +12,14 @@ const {
 } = models
 
 // const {ensureAuthenticated} = require('./key/outh')
-const  ensureAuthenticated  = require('../key/auth')
+const  {ensureAuthenticated}  = require('../key/auth')
+
 
 import bcrypt from 'bcryptjs'
 
 
 passport.use(
-  new LocalStrategy({
+  new LocalStrategy({ 
     usernameField: 'email'
   }, (email, password, done) => {
     // Match user
@@ -27,15 +28,17 @@ passport.use(
         email: email
       }
     }).then(user => {
-      console.log('got it');
-      console.log(user);
+      // console.log('got it');
+      // console.log(user);
       if (!user) {
         console.log('tidak ada');
         return done(null, false, {
           message: 'That email is not registered'
         });
       }
-
+      //  else if(!user.validPassword(pasword)){
+      //   return done(null, false)
+      // }
 
       // Match password
       bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -56,21 +59,25 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  // console.log(`id: ${id}`);
-  Players.findById(id)
-    .then(user => {
+  // // console.log(`id: ${id}`);
+  // Players.findById(id)
+  //   .then(user => {
 
-      done(null, user);
-    })
-    .catch(error => {
-      console.log(`Error: ${error}`);
-    });
+  //     done(null, user);
+  //   })
+  //   .catch(error => {
+  //     console.log(`Error: ${error}`);
+  //   });
+  Players.findById(id, (err, user) => {
+    done(err, user)
+  })
 });
 
 
 router.get('/', (req, res) => {
-  
-  res.render('login')
+  // console.log(res)
+  let url = null
+  res.render('login', { url })
 })
 
 

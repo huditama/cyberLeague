@@ -46,22 +46,24 @@ module.exports= function(passport) {
 
 
   passport.serializeUser(function(user, done) {
+    console.log(user, 'ini')
+    
     done(null, user.id);
 
   });
 
 
   passport.deserializeUser(function(id, done) {
-
-    Players.findById(id)
+console.log(id, 'ini id')
+    User.findById(id)
     .then(data => {
-      console.log('masuk');
+     console.log(data)
       if(data){
-        done(null, data)
+        return done(null, data)
       }
     })
     .catch(err => {
-      done(err, null)
+      return done(err, null)
     })
   })
 }

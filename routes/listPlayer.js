@@ -4,10 +4,10 @@ import models from '../models'
 const { Players, Clubs, Competitions } = models
 import bcrypt from 'bcryptjs'
 // const {ensureAuthenticated} = require('./key/outh')
-const  ensureAuthenticated  = require('../key/auth')
+const  {ensureAuthenticated}  = require('../key/auth')
 
 //LIST 
-router.get("/", function ensureAuthenticated (req, res) {
+router.get("/", function (req, res) {
     console.log(req.session ,'ini')
     Players.findAll({
         include: [Clubs],

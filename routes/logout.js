@@ -14,10 +14,13 @@ const {
 import bcrypt from 'bcryptjs'
 
 router.get('/', function(req, res, next) {
-  console.log(req.session)
+  // console.log(req.session)
     req.logout()
+    req.session.destroy( (err ) => {
+
+      res.redirect('/login')
+    })
     
-    res.redirect('/login')
 })
 
 export default router

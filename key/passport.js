@@ -59,11 +59,11 @@ console.log(id, 'ini id')
     .then(data => {
      console.log(data)
       if(data){
-        return done(null, data)
+        done(null, data)
       }
     })
     .catch(err => {
-      return done(err, null)
+       done(err, null)
     })
   })
 }

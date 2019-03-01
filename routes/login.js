@@ -60,17 +60,17 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   // // console.log(`id: ${id}`);
-  // Players.findById(id)
-  //   .then(user => {
+  Players.findById(id)
+    .then(user => {
 
-  //     done(null, user);
-  //   })
-  //   .catch(error => {
-  //     console.log(`Error: ${error}`);
-  //   });
-  Players.findById(id, (err, user) => {
-    done(err, user)
-  })
+      done(null, user);
+    })
+    .catch(error => {
+      console.log(`Error: ${error}`);
+    });
+  // Players.findById(id, (err, user) => {
+  //   done(err, user)
+  // })
 });
 
 
@@ -92,12 +92,11 @@ router.post('/', (req, res, next) => {
       return res.redirect('/register')
     } else {
       if (user.role == 'Admin') {
-       
-        res.redirect('/playersAdmin')
+        return res.redirect('/playersAdmin')
       } else if (user.role == 'Athlete') {
-        res.redirect('/players/clubs')
+        return res.redirect('/players/clubs')
       } else if (user.role == 'Promotor') {
-        res.redirect('/promotor/competitions')
+        return res.redirect('/promotor/competitions')
       }
     }
     // console.log(req.body, ';iniiiiiiiii');

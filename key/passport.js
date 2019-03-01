@@ -44,16 +44,15 @@ module.exports= function(passport) {
 
   )
 
-
-  passport.serializeUser(function(user, done) {
+passport.serializeUser(function(user, done) {
     console.log(user, 'ini')
-    
+
     done(null, user.id);
 
   });
 
 
-  passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(id, done) {
 console.log(id, 'ini id')
     User.findById(id)
     .then(data => {
@@ -67,53 +66,3 @@ console.log(id, 'ini id')
     })
   })
 }
-//
-// module.exports = function(passport) {
-//   console.log("passport is working");
-//   passport.serializeUser(function(users, done) {
-//     return done(null, users.id);
-//     console.log("Serialize");
-//
-//   })
-//   // function findById(id, fn) {
-//   //     Users.findById(id).
-//   //  }
-//   //  function (err, users) {
-//   //
-//   //     done(err, users);
-//   //   });
-//   passport.deserializeUser(function(id, done) {
-//     console.log("DeSerialize");
-//     Players.findById(id).then((users) => {
-//       console.log(users);
-//       return done(null, users);
-//     });
-//   })
-//
-//   passport.use(new LocalStrategy(
-//     function(username, password, done) {
-//       Players.findOne({
-//           where: {
-//             username: username
-//           }
-//         },
-//         function(err, users) {
-//           if (err) {
-//             return done(err);
-//           }
-//           if (!users) {
-//             return done(null, false, {
-//               message: 'Incorrect username.'
-//             });
-//           }
-//           if (!users.password === password) {
-//             return done(null, false, {
-//               message: 'Incorrect password.'
-//             });
-//           }
-//           return done(null, users);
-//         });
-//     }
-//   ));
-//
-// }

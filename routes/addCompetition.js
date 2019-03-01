@@ -10,10 +10,12 @@ const {
 
 router.get("/", function (req, res) {
     res.render('addCompetition');
-  }).post("/", function (req, res) {
+  })
+
+  .post("/", function (req, res) {
     Competitions.create(
       // competition_name: req.body.competition_name,
-      // // schedule: 
+      // // schedule:
       req.body
     )
       .then(() => {

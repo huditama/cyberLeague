@@ -1,9 +1,16 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "47",
+    "username": "muhammad",
+    "password": "null",
     "database": "projectJumat",
     "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ddihreosapfynl",
+    "password": "7b029cf44f07eec0e8f2528df53967c90261aa753a9e9057ec8ba96553efa5ad",
+    "database": "d4p07653v748id",
+    "host": "ec2-54-83-50-174.compute-1.amazonaws.com",
     "dialect": "postgres"
   }
 }
